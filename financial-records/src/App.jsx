@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./App.css";
-import { Router } from "react-router-dom";
-import Layout from "./components/layout/Layout";
+import GlobalStyle from "./styles/GlobalStyle.jsx";
+import Router from "./shared/Router.jsx";
+import Layout from "./components/layout/Layout.jsx";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "style-components";
+import styled from "styled-components";
 
 const LayoutDiv = styled.div`
   font-size: 2rem;
