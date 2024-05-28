@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RecordFormContainer from "../components/specific/RecordFormContainer.jsx";
-import SelectMonthContainer from "../components/specific/SelectMonthContainter.jsx";
-import RecordsListContainer from "../components/specific/RecordsListContainer.jsx";
+import RecordFormContainer from "../components/organisms/RecordFormContainer.jsx";
+import SelectMonthContainer from "../components/organisms/SelectMonthContainter.jsx";
+import RecordsListContainer from "../components/organisms/RecordsListContainer.jsx";
 
 const Home = ({ selectedMonth, setSelectedMonth, records, setRecords }) => {
   const [filteredRecords, setFilteredRecords] = useState([]);

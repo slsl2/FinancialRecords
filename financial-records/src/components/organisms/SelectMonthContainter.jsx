@@ -1,4 +1,7 @@
-import MonthBtn from "../common/MonthBtn.jsx";
+import styled from "styled-components";
+import MonthBtn from "../atoms/MonthBtn.jsx";
+import StyledContainer from "../../styles/StyledContainer.jsx";
+
 const SelectMonthContainer = ({
   selectedMonth,
   setSelectedMonth,
@@ -21,18 +24,23 @@ const SelectMonthContainer = ({
   };
 
   return (
-    <>
-      <ul>
-        {monthArr.map((month) => (
-          <MonthBtn
-            key={month}
-            month={month}
-            onClick={() => selectMonth(month)}
-          />
-        ))}
-      </ul>
-    </>
+    <MonthsUl>
+      {monthArr.map((month) => (
+        <MonthBtn
+          key={month}
+          month={month}
+          selectedMonth={selectedMonth}
+          onClick={() => selectMonth(month)}
+        />
+      ))}
+    </MonthsUl>
   );
 };
+
+const MonthsUl = styled(StyledContainer).attrs({ as: "ul" })`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 
 export default SelectMonthContainer;

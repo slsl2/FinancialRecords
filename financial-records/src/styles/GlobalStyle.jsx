@@ -9,7 +9,11 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-size: 2rem;
-        margin: 0 auto;
+        background-color: #2ec4b6;
+    }
+
+    button:hover {
+        cursor: pointer;
     }
 `;
 

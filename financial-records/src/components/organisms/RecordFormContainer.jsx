@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+import StyledContainer from "../../styles/StyledContainer";
+import Button from "../atoms/Button";
 
 const RecordFormContainer = ({ records, setRecords }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // 초기값을 현재 날짜로
@@ -57,19 +60,39 @@ const RecordFormContainer = ({ records, setRecords }) => {
   return (
     <>
       {" "}
-      <form onSubmit={addRecord}>
+      <RecordForm onSubmit={addRecord}>
         <input onChange={handleDate} type="date" value={date}></input>
-        <input onChange={handleItem} type="text" value={item}></input>
-        <input onChange={handleAmount} type="number" value={amount}></input>
+        <input
+          onChange={handleItem}
+          type="text"
+          value={item}
+          placeholder="지출 항목"
+        ></input>
+        <input
+          onChange={handleAmount}
+          type="number"
+          value={amount}
+          placeholder="지출 금액"
+        ></input>
         <input
           onChange={handleDescription}
           type="text"
           value={description}
+          placeholder="지출 내용"
         ></input>
-        <button type="submit">저장</button>
-      </form>
+        <Button
+          backgroundColor="#4287f5"
+          color="white"
+          contents="저장"
+          type="submit"
+        ></Button>
+      </RecordForm>
     </>
   );
 };
+
+const RecordForm = styled(StyledContainer).attrs({ as: "form" })`
+  font-size: 2rem;
+`;
 
 export default RecordFormContainer;
