@@ -1,16 +1,16 @@
-const RecordsListContainer = ({ records }) => {
+const filterdRecordsListContainer = ({ filteredRecords }) => {
   return (
     <ul>
-      {records.map((record) => (
-        <li key={record.id}>
-          <p>{record.date}</p>
-          <p>{record.item}</p>
-          <p>{record.amount}</p>
-          <p>{record.description}</p>
+      {filteredRecords.map((filteredRecord) => (
+        <li key={filteredRecord.id}>
+          <p>{filteredRecord.date}</p>
+          <p>{filteredRecord.item}</p>
+          <p>{filteredRecord.amount}</p>
+          <p>{filteredRecord.description}</p>
         </li>
       ))}
     </ul>
   );
 };
 
-export default RecordsListContainer;
+export default filterdRecordsListContainer;
