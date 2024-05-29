@@ -11,6 +11,7 @@ const filterdRecordsListContainer = ({ filteredRecords }) => {
         filteredRecords.map((filteredRecord) => (
           <RecordBlock
             key={filteredRecord.id}
+            id={filteredRecord.id}
             date={filteredRecord.date}
             item={filteredRecord.item}
             amount={filteredRecord.amount}

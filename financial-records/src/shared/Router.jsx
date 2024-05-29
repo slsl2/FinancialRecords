@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home.jsx";
-import Detail from "../pages/Detail.jsx";
+import Record from "../pages/Record.jsx";
 
 const Router = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    const fetchFakeRecords = async () => {
+      try {
+        const response = await fetch("/Fake.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setRecords(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchFakeRecords();
+  }, []);
+
+  const handleAddRecord = (newRecord) => {
+    setRecords([...records, newRecord]);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -17,10 +39,14 @@ const Router = () => {
               setSelectedMonth={setSelectedMonth}
               records={records}
               setRecords={setRecords}
+              handleAddRecord={handleAddRecord}
             />
           }
         />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route
+          path="/record/:id"
+          element={<Record records={records} setRecords={setRecords} />}
+        />
       </Routes>
     </BrowserRouter>
   );

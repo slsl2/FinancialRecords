@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     button:hover {
         cursor: pointer;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyle;

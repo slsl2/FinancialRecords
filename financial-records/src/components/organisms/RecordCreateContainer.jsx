@@ -3,28 +3,11 @@ import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer";
 import Button from "../atoms/Button";
 
-const RecordFormContainer = ({ records, setRecords }) => {
+const RecordCreateContainer = ({ records, handleAddRecord }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // 초기값을 현재 날짜로
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    const fetchFakeRecords = async () => {
-      try {
-        const response = await fetch("/Fake.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setRecords(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchFakeRecords();
-  }, [setRecords]);
 
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -39,16 +22,24 @@ const RecordFormContainer = ({ records, setRecords }) => {
     setDescription(e.target.value);
   };
 
-  const addRecord = (e) => {
+  const AddRecord = (e) => {
     e.preventDefault();
     if (!date || !item.trim() || !amount.trim() || !description.trim()) {
       alert("모두 입력해주세요");
       return;
     }
-    setRecords((records) => [
-      ...records,
-      { id: Date.now(), date, item, amount: +amount, description },
-    ]);
+    const newRecord = {
+      id: Date.now(),
+      date,
+      item,
+      amount: +amount,
+      description,
+    };
+    handleAddRecord(newRecord);
+    // setRecords((records) => [
+    //   ...records,
+    //   { id: Date.now(), date, item, amount: +amount, description },
+    // ]);
     setDate(new Date().toISOString().split("T")[0]);
     setItem("");
     setAmount("");
@@ -60,7 +51,7 @@ const RecordFormContainer = ({ records, setRecords }) => {
   return (
     <>
       {" "}
-      <RecordForm onSubmit={addRecord}>
+      <RecordForm onSubmit={AddRecord}>
         <input onChange={handleDate} type="date" value={date}></input>
         <input
           onChange={handleItem}
@@ -95,4 +86,4 @@ const RecordForm = styled(StyledContainer).attrs({ as: "form" })`
   font-size: 2rem;
 `;
 
-export default RecordFormContainer;
+export default RecordCreateContainer;

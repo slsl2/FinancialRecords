@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import RecordFormContainer from "../components/organisms/RecordFormContainer.jsx";
+import RecordCreateContainer from "../components/organisms/RecordCreateContainer.jsx";
 import SelectMonthContainer from "../components/organisms/SelectMonthContainter.jsx";
 import RecordsListContainer from "../components/organisms/RecordsListContainer.jsx";
 
-const Home = ({ selectedMonth, setSelectedMonth, records, setRecords }) => {
+const Home = ({
+  selectedMonth,
+  setSelectedMonth,
+  records,
+  handleAddRecord,
+}) => {
   const [filteredRecords, setFilteredRecords] = useState([]);
   return (
     <>
-      <RecordFormContainer records={records} setRecords={setRecords} />
+      <RecordCreateContainer
+        records={records}
+        handleAddRecord={handleAddRecord}
+      />
       <SelectMonthContainer
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}

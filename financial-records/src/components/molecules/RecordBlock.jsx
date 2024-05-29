@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const RecordBlock = ({ date, item, amount, description }) => {
+const RecordBlock = ({ id, date, item, amount, description }) => {
   return (
-    <RecordLi>
+    <RecordLi to={`/record/${id}`}>
       <div>
         <p>{date}</p>
         <RecordItemDescription>
@@ -14,7 +15,7 @@ const RecordBlock = ({ date, item, amount, description }) => {
   );
 };
 
-const RecordLi = styled.li`
+const RecordLi = styled(Link)`
   margin: 1rem;
   background-color: #f9f9f9;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;

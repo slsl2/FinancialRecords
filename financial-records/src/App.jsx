@@ -3,7 +3,7 @@ import GlobalStyle from "./styles/GlobalStyle.jsx";
 import Router from "./shared/Router.jsx";
 import Layout from "./components/layout/Layout.jsx";
 
-function App() {
+const App = () => {
   return (
     <>
       <GlobalStyle />
@@ -12,6 +12,6 @@ function App() {
       </Layout>
     </>
   );
-}
+};
 
 export default App;

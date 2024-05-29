@@ -14,8 +14,8 @@ const StyledButton = styled.button`
   line-height: 150%;
   font-size: 1.4rem;
   border: none;
-  background-color: ${(props) => props.backgroundColor};
-  color: ${(props) => props.color};
+  background-color: ${(props) => props.$backgroundColor};
+  color: ${(props) => props.$color};
 `;
 
 export default Button;
