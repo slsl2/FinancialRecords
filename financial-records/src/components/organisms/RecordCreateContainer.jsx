@@ -86,16 +86,14 @@ const RecordCreateContainer = () => {
             placeholder="지출 내용"
           />
         </InputDiv>
-        <div>
-          <Button
-            width="8rem"
-            backgroundColor="#4287f5"
-            color="white"
-            margin="1rem 0 0 0"
-            contents="저장"
-            type="submit"
-          ></Button>
-        </div>
+        <Button
+          width="8rem"
+          backgroundColor="#4287f5"
+          color="white"
+          margin="1rem 0 0 0"
+          contents="저장"
+          type="submit"
+        ></Button>
       </RecordForm>
     </>
   );
@@ -104,6 +102,7 @@ const RecordCreateContainer = () => {
 const RecordForm = styled(StyledContainer).attrs({ as: "form" })`
   font-size: 1.4rem;
   display: flex;
+  justify-content: center;
   align-items: end;
   flex-wrap: wrap;
 `;
@@ -115,6 +114,7 @@ const Input = styled.input`
   font-size: 1.4rem;
   margin: 1rem 1rem 0 0;
   padding: 1rem;
+  width: 15rem;
 `;
 
 export default RecordCreateContainer;

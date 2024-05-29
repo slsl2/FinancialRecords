@@ -26,7 +26,6 @@ const Button = ({
 const StyledButton = styled.button`
   padding: 1rem 2rem;
   border-radius: 5px;
-  line-width: 150%;
   font-size: 1.4rem;
   border: none;
   width: ${(props) => props.$width};
