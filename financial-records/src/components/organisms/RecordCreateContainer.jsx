@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer";
 import Button from "../atoms/Button";
@@ -9,6 +9,13 @@ const RecordCreateContainer = ({ records, setRecords }) => {
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
+
+  const dateRef = useRef(null);
+
+  useEffect(() => {
+    // 컴포넌트가 처음 마운트될 때 날짜 입력 필드에 포커스를 설정
+    dateRef.current.focus();
+  }, []);
 
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -33,10 +40,11 @@ const RecordCreateContainer = ({ records, setRecords }) => {
       ...records,
       { id: uuidv4(), date, item, amount: +amount, description },
     ]);
-    setDate(new Date().toISOString().split("T")[0]);
+    setDate("");
     setItem("");
     setAmount("");
     setDescription("");
+    dateRef.current.focus();
   };
 
   console.log(records);
@@ -47,7 +55,7 @@ const RecordCreateContainer = ({ records, setRecords }) => {
       <RecordForm onSubmit={AddRecord}>
         <InputDiv>
           <span>날짜</span>
-          <Input onChange={handleDate} type="date" value={date} />
+          <Input ref={dateRef} onChange={handleDate} type="text" value={date} />
         </InputDiv>
         <InputDiv>
           <span>항목</span>

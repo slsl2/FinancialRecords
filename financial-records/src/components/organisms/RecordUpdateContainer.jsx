@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer.jsx";
 import Button from "../atoms/Button.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const RecordUpdateContainer = ({ records, setRecords }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dateRef = useRef(null);
   const record = records.find((record) => record.id === id);
 
   const [date, setDate] = useState(record ? record.date : "");
@@ -22,6 +23,7 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
       setItem(record.item);
       setAmount(record.amount);
       setDescription(record.description);
+      dateRef.current.focus();
     }
   }, [record]);
 
@@ -55,7 +57,8 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
         <RecordUpdateForm onSubmit={updateRecord}>
           <span>날짜</span>
           <Input
-            type="date"
+            ref={dateRef}
+            type="text"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
