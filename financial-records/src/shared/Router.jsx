@@ -24,10 +24,6 @@ const Router = () => {
     fetchFakeRecords();
   }, []);
 
-  const handleAddRecord = (newRecord) => {
-    setRecords([...records, newRecord]);
-  };
-
   return (
     <BrowserRouter>
       <Routes>
@@ -39,7 +35,6 @@ const Router = () => {
               setSelectedMonth={setSelectedMonth}
               records={records}
               setRecords={setRecords}
-              handleAddRecord={handleAddRecord}
             />
           }
         />

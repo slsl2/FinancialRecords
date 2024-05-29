@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer";
 import Button from "../atoms/Button";
+import { v4 as uuidv4 } from "uuid";
 
-const RecordCreateContainer = ({ records, handleAddRecord }) => {
+const RecordCreateContainer = ({ records, setRecords }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // 초기값을 현재 날짜로
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
@@ -28,18 +29,10 @@ const RecordCreateContainer = ({ records, handleAddRecord }) => {
       alert("모두 입력해주세요");
       return;
     }
-    const newRecord = {
-      id: Date.now(),
-      date,
-      item,
-      amount: +amount,
-      description,
-    };
-    handleAddRecord(newRecord);
-    // setRecords((records) => [
-    //   ...records,
-    //   { id: Date.now(), date, item, amount: +amount, description },
-    // ]);
+    setRecords((records) => [
+      ...records,
+      { id: uuidv4(), date, item, amount: +amount, description },
+    ]);
     setDate(new Date().toISOString().split("T")[0]);
     setItem("");
     setAmount("");
