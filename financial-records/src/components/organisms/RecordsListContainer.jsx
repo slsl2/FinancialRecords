@@ -2,7 +2,7 @@ import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer.jsx";
 import RecordBlock from "../molecules/RecordBlock.jsx";
 
-const filterdRecordsListContainer = ({ filteredRecords }) => {
+const RecordsListContainer = ({ filteredRecords }) => {
   return (
     <RecordsUl>
       {filteredRecords.length === 0 ? (
@@ -35,4 +35,4 @@ const NoRecords = styled.div`
   padding: 2rem;
 `;
 
-export default filterdRecordsListContainer;
+export default RecordsListContainer;
