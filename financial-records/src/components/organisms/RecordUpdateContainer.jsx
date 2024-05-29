@@ -53,26 +53,30 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
     <>
       <RecordUpdateDiv>
         <RecordUpdateForm onSubmit={updateRecord}>
-          <input
+          <span>날짜</span>
+          <Input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-          ></input>
-          <input
+          />
+          <span>항목</span>
+          <Input
             type="text"
             value={item}
             onChange={(e) => setItem(e.target.value)}
-          ></input>
-          <input
+          />
+          <span>금액</span>
+          <Input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-          ></input>
-          <input
+          />
+          <span>내용</span>
+          <Input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          ></input>
+          />
           <Button
             backgroundColor="#4287f5"
             color="white"
@@ -84,6 +88,7 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
           <Button
             backgroundColor="#ff4d4d"
             color="white"
+            margin="0 1rem 0 0"
             contents="삭제"
             type="button"
             onClick={() => deleteRecord(id)}
@@ -102,11 +107,23 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
 };
 
 const RecordUpdateDiv = styled(StyledContainer).attrs({ as: "div" })`
-  font-size: 2rem;
+  font-size: 1.4rem;
 `;
-const RecordUpdateForm = styled.form``;
+const RecordUpdateForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  font-size: 1.4rem;
+  margin: 1rem 0 1rem 0;
+  padding: 1rem;
+`;
+
 const BtnsDiv = styled.div`
   display: flex;
+  margin-top: 1rem;
 `;
 
 export default RecordUpdateContainer;

@@ -45,38 +45,66 @@ const RecordCreateContainer = ({ records, setRecords }) => {
     <>
       {" "}
       <RecordForm onSubmit={AddRecord}>
-        <input onChange={handleDate} type="date" value={date}></input>
-        <input
-          onChange={handleItem}
-          type="text"
-          value={item}
-          placeholder="지출 항목"
-        ></input>
-        <input
-          onChange={handleAmount}
-          type="number"
-          value={amount}
-          placeholder="지출 금액"
-        ></input>
-        <input
-          onChange={handleDescription}
-          type="text"
-          value={description}
-          placeholder="지출 내용"
-        ></input>
-        <Button
-          backgroundColor="#4287f5"
-          color="white"
-          contents="저장"
-          type="submit"
-        ></Button>
+        <InputDiv>
+          <span>날짜</span>
+          <Input onChange={handleDate} type="date" value={date} />
+        </InputDiv>
+        <InputDiv>
+          <span>항목</span>
+          <Input
+            onChange={handleItem}
+            type="text"
+            value={item}
+            placeholder="지출 항목"
+          />
+        </InputDiv>
+        <InputDiv>
+          <span>금액</span>
+          <Input
+            onChange={handleAmount}
+            type="number"
+            value={amount}
+            placeholder="지출 금액"
+          />
+        </InputDiv>
+        <InputDiv>
+          <span>내용</span>
+          <Input
+            onChange={handleDescription}
+            type="text"
+            value={description}
+            placeholder="지출 내용"
+          />
+        </InputDiv>
+        <div>
+          <Button
+            width="8rem"
+            backgroundColor="#4287f5"
+            color="white"
+            margin="1rem 0 0 0"
+            contents="저장"
+            type="submit"
+          ></Button>
+        </div>
       </RecordForm>
     </>
   );
 };
 
 const RecordForm = styled(StyledContainer).attrs({ as: "form" })`
-  font-size: 2rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+`;
+const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Input = styled.input`
+  font-size: 1.4rem;
+  margin: 1rem 1rem 0 0;
+  padding: 1rem;
 `;
 
 export default RecordCreateContainer;
