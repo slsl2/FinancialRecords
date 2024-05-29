@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-const Button = ({ backgroundColor, color, contents }) => {
+const Button = ({ backgroundColor, color, contents, type, onClick }) => {
   return (
-    <StyledButton $backgroundColor={backgroundColor} $color={color}>
+    <StyledButton
+      $backgroundColor={backgroundColor}
+      $color={color}
+      type={type}
+      onClick={onClick}
+    >
       {contents}
     </StyledButton>
   );

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer.jsx";
 import Button from "../atoms/Button.jsx";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const RecordUpdateContainer = ({ records, setRecords }) => {
   const { id } = useParams();
@@ -33,78 +33,78 @@ const RecordUpdateContainer = ({ records, setRecords }) => {
         : record
     );
     setRecords(updatedRecords);
-    // navigate("/");
-  };
-
-  const deleteRecord = (e) => {
-    e.preventDefault();
-    const updatedRecords = records.filter((record) => record.id !== Number(id));
-    setRecords(updatedRecords);
     navigate("/");
   };
 
-  //   const goBack = (e) => {
-  //     e.preventDefault();
-  //     navigate("/");
-  //   };
-  //   console.log(record);
+  const deleteRecord = (id) => {
+    if (!confirm("정말로 삭제하시겠습니까?")) {
+      return false;
+    }
+    setRecords(records.filter((record) => record.id !== id));
+    navigate("/");
+  };
+
+  const goBack = (e) => {
+    e.preventDefault();
+    navigate("/");
+  };
 
   return (
     <>
-      <RecordUpdateForm onSubmit={updateRecord}>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          value={item}
-          onChange={(e) => setItem(e.target.value)}
-        ></input>
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></input>
-        <BtnsDiv>
+      <RecordUpdateDiv>
+        <RecordUpdateForm onSubmit={updateRecord}>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            value={item}
+            onChange={(e) => setItem(e.target.value)}
+          ></input>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></input>
           <Button
             backgroundColor="#4287f5"
             color="white"
             contents="수정"
             type="submit"
           ></Button>
+        </RecordUpdateForm>
+        <BtnsDiv>
           <Button
             backgroundColor="#ff4d4d"
             color="white"
             contents="삭제"
             type="button"
-            onClick={deleteRecord}
+            onClick={() => deleteRecord(id)}
           ></Button>
-          <Link to="/">
-            <Button
-              backgroundColor="#6c757d"
-              color="white"
-              contents="뒤로 가기"
-              type="button"
-              // onClick={goBack}
-            ></Button>
-          </Link>
+          <Button
+            backgroundColor="#6c757d"
+            color="white"
+            contents="뒤로 가기"
+            type="button"
+            onClick={goBack}
+          ></Button>
         </BtnsDiv>
-      </RecordUpdateForm>
+      </RecordUpdateDiv>
     </>
   );
 };
 
-const RecordUpdateForm = styled(StyledContainer).attrs({ as: "form" })`
+const RecordUpdateDiv = styled(StyledContainer).attrs({ as: "div" })`
   font-size: 2rem;
 `;
-
+const RecordUpdateForm = styled.form``;
 const BtnsDiv = styled.div`
   display: flex;
 `;
