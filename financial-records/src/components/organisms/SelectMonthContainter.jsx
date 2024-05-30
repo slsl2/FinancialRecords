@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import MonthBtn from "../atoms/MonthBtn.jsx";
 import StyledContainer from "../../styles/StyledContainer.jsx";
-import { RecordContext } from "../../contexts/RecordContext";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 const SelectMonthContainer = ({
   selectedMonth,
   setSelectedMonth,
   setFilteredRecords,
 }) => {
-  const { records } = useContext(RecordContext);
+  const records = useSelector((state) => state.records);
   const monthArr = Array(12)
     .fill()
     .map((value, i) => (i + 1).toString().padStart(2, "0"));

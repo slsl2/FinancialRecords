@@ -5,6 +5,7 @@ import RecordsListContainer from "../components/organisms/RecordsListContainer.j
 
 const Home = ({ selectedMonth, setSelectedMonth }) => {
   const [filteredRecords, setFilteredRecords] = useState([]);
+
   return (
     <>
       <RecordCreateContainer />

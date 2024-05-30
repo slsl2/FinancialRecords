@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer.jsx";
-import { RecordContext } from "../../contexts/RecordContext.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../atoms/Button.jsx";
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { editRecord, deleteRecord } from "../../redux/slices/recordsSlice.js";
 
 const RecordUpdateContainer = () => {
-  const { records, setRecords } = useContext(RecordContext);
+  const records = useSelector((state) => state.records);
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const navigate = useNavigate();
   const dateRef = useRef(null);
@@ -29,22 +32,23 @@ const RecordUpdateContainer = () => {
     }
   }, [record]);
 
-  const updateRecord = (e) => {
-    e.preventDefault();
-    const updatedRecords = records.map((record) =>
-      record.id === id
-        ? { ...record, date, item, amount: +amount, description }
-        : record
-    );
-    setRecords(updatedRecords);
+  const handleEditRecord = () => {
+    const newRecord = {
+      id: id,
+      date: date,
+      item: item,
+      amount: amount,
+      description: description,
+    };
+    dispatch(editRecord(newRecord));
     navigate("/");
   };
 
-  const deleteRecord = (id) => {
+  const handleDeleteRecord = () => {
     if (!confirm("정말로 삭제하시겠습니까?")) {
       return false;
     }
-    setRecords(records.filter((record) => record.id !== id));
+    dispatch(deleteRecord({ id }));
     navigate("/");
   };
 
@@ -56,7 +60,7 @@ const RecordUpdateContainer = () => {
   return (
     <>
       <RecordUpdateDiv>
-        <RecordUpdateForm onSubmit={updateRecord}>
+        <RecordUpdateForm onSubmit={handleEditRecord}>
           <span>날짜</span>
           <Input
             ref={dateRef}
@@ -96,7 +100,7 @@ const RecordUpdateContainer = () => {
             margin="0 1rem 0 0"
             contents="삭제"
             type="button"
-            onClick={() => deleteRecord(id)}
+            onClick={() => handleDeleteRecord()}
           ></Button>
           <Button
             backgroundColor="#6c757d"
