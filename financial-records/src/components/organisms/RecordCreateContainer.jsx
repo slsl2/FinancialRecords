@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import StyledContainer from "../../styles/StyledContainer";
-import { RecordContext } from "../contexts/RecordContext";
+import { RecordContext } from "../../contexts/RecordContext";
 import Button from "../atoms/Button";
 import { v4 as uuidv4 } from "uuid";
 
@@ -48,8 +48,6 @@ const RecordCreateContainer = () => {
     setDescription("");
     dateRef.current.focus();
   };
-
-  console.log(records);
 
   return (
     <>

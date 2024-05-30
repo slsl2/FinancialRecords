@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MonthBtn from "../atoms/MonthBtn.jsx";
 import StyledContainer from "../../styles/StyledContainer.jsx";
-import { RecordContext } from "../contexts/RecordContext";
+import { RecordContext } from "../../contexts/RecordContext";
 import { useContext } from "react";
 
 const SelectMonthContainer = ({
